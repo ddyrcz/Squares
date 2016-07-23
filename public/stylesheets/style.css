@@ -1,0 +1,30 @@
+body{
+    width: 100%;
+    margin-top: 50px; 
+}
+
+#board{
+    position: relative;
+    width: 500px;
+    height: 350px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+#red{
+    position: absolute;
+    right: 400px;
+    top: 30px;
+    background-color: red;
+    width: 20px;    
+    height: 20px;
+}
+
+#green{
+    position: absolute;
+    background-color: green;
+    width: 20px;
+    right: 30px;
+    height: 20px;
+    top: 250px;
+}
