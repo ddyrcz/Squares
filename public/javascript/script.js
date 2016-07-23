@@ -3,7 +3,6 @@ const RIGHT_KEY_CODE = 39;
 const UP_KEY_CODE = 38;
 const DOWN_KEY_CODE = 40;
 
-
 $(document).ready(() => {
 
     $(document).keydown((event) => {
@@ -21,12 +20,14 @@ $(document).ready(() => {
                 $('#green').css('right', rightPosition + 'px');             
                 break;
             case UP_KEY_CODE:                
+                var rightPosition = parseInt($('#green').css('top')) - shift;                
+                $('#green').css('top', rightPosition + 'px');        
                 break;
             case DOWN_KEY_CODE:                
+                var rightPosition = parseInt($('#green').css('top')) + shift;                
+                $('#green').css('top', rightPosition + 'px');        
                 break;
-        }
-
-        
+        }        
     });
 
 });
