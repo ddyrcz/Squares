@@ -2,7 +2,7 @@ const LEFT_KEY_CODE = 37;
 const RIGHT_KEY_CODE = 39;
 const UP_KEY_CODE = 38;
 const DOWN_KEY_CODE = 40;
-var shift = 5;
+const SHIFT = 5;
 
 var socket = io.connect();
 var square;
@@ -20,27 +20,27 @@ $(document).ready(() => {
 
     socket.on('right', (square) => {
         var id = '#' + square;
-        var position = parseInt($(id).css('right')) - shift;
+        var position = parseInt($(id).css('right')) - SHIFT;
         if (position >= 0)
             $(id).css('right', position + 'px');
     });
 
     socket.on('left', (square) => {
         var id = '#' + square;
-        var position = parseInt($(id).css('right')) + shift;        
+        var position = parseInt($(id).css('right')) + SHIFT;        
         if (parseInt($('#board').css('width')) >= position + parseInt($(id).css('width')))
             $(id).css('right', position + 'px');
     });
     socket.on('up', (square) => {
         var id = '#' + square;
-        var position = parseInt($(id).css('top')) - shift;
+        var position = parseInt($(id).css('top')) - SHIFT;
         if (position >= 0)
             $(id).css('top', position + 'px');
     });
 
     socket.on('down', (square) => {
         var id = '#' + square;
-        var position = parseInt($(id).css('top')) + shift;        
+        var position = parseInt($(id).css('top')) + SHIFT;        
         if (parseInt($('#board').css('height')) >= position + parseInt($(id).css('height')))
             $(id).css('top', position + 'px');
     });
