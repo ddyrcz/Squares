@@ -18,31 +18,40 @@ $(document).ready(() => {
         console.log(err);
     });
 
-    socket.on('right', (square) => {
-        var id = '#' + square;
-        var position = parseInt($(id).css('right')) - SHIFT;
-        if (position >= 0)
+    socket.on('right', (data) => {
+        var id = '#' + data.square;
+        var position = data.position;
+        //if (position >= 0)
             $(id).css('right', position + 'px');
     });
 
-    socket.on('left', (square) => {
-        var id = '#' + square;
-        var position = parseInt($(id).css('right')) + SHIFT;        
-        if (parseInt($('#board').css('width')) >= position + parseInt($(id).css('width')))
+    socket.emit('board', ({'width':$('#board').css('width'), 'height':$('#board').css('height')}))
+
+    socket.on('left', (data) => {
+        var id = '#' + data.square;
+        var position = data.position;        
+        //if (parseInt($('#board').css('width')) >= position + parseInt($(id).css('width')))
             $(id).css('right', position + 'px');
     });
-    socket.on('up', (square) => {
-        var id = '#' + square;
-        var position = parseInt($(id).css('top')) - SHIFT;
-        if (position >= 0)
+    socket.on('up', (data) => {
+        var id = '#' + data.square;
+        var position = data.position;
+        //if (position >= 0)
             $(id).css('top', position + 'px');
     });
 
-    socket.on('down', (square) => {
-        var id = '#' + square;
-        var position = parseInt($(id).css('top')) + SHIFT;        
-        if (parseInt($('#board').css('height')) >= position + parseInt($(id).css('height')))
+    socket.on('down', (data) => {
+        var id = '#' + data.square;
+        var position = data.position;        
+        //if (parseInt($('#board').css('height')) >= position + parseInt($(id).css('height')))
             $(id).css('top', position + 'px');
+    });
+
+    socket.on('init', (data) => {
+        $('#red').css('top', data.red.top + 'px');
+        $('#red').css('right', data.red.right + 'px');
+        $('#green').css('top', data.green.top + 'px');
+        $('#green').css('right', data.green.right + 'px');
     });
 
     $(document).keydown((event) => {
