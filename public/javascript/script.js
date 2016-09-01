@@ -20,32 +20,32 @@ $(document).ready(() => {
 
     socket.on('right', (data) => {
         var id = '#' + data.square;
-        var position = data.position;
-        //if (position >= 0)
-            $(id).css('right', position + 'px');
+        var position = data.newPosition + 'px';
+        //if (newPosition >= 0)
+            $(id).css('right', position);
     });
-
-    socket.emit('board', ({'width':$('#board').css('width'), 'height':$('#board').css('height')}))
 
     socket.on('left', (data) => {
         var id = '#' + data.square;
-        var position = data.position;        
-        //if (parseInt($('#board').css('width')) >= position + parseInt($(id).css('width')))
-            $(id).css('right', position + 'px');
+        var position = data.newPosition;               
+        //if (parseInt($('#board').css('width')) >= newPosition + parseInt($(id).css('width')))
+            $(id).css('right', position);
     });
     socket.on('up', (data) => {
         var id = '#' + data.square;
-        var position = data.position;
-        //if (position >= 0)
-            $(id).css('top', position + 'px');
+        var position = data.newPosition + 'px';
+        //if (newPosition >= 0)
+            $(id).css('top', position);
     });
 
     socket.on('down', (data) => {
         var id = '#' + data.square;
-        var position = data.position;        
-        //if (parseInt($('#board').css('height')) >= position + parseInt($(id).css('height')))
-            $(id).css('top', position + 'px');
+        var position = data.newPosition + 'px';   
+        //if (parseInt($('#board').css('height')) >= newPosition + parseInt($(id).css('height')))
+            $(id).css('top', position);
     });
+
+    socket.emit('board', ({'width':$('#board').css('width'), 'height':$('#board').css('height')}))
 
     socket.on('init', (data) => {
         $('#red').css('top', data.red.top + 'px');
