@@ -71,62 +71,30 @@ io.sockets.on('connection', (socket) => {
 });
 
 var calculateNewPosition = function (square, movementType) {
-    var position = undefined;
-    if (square == 'red') {
-        if (movementType == 'right') {
-            var newPosition = squarePositions.red.right - SHIFT
-            if (newPosition >= 0) {
-                squarePositions.red.right = newPosition;
-                position = squarePositions.red.right;
-            }
-        } else if (movementType == 'left') {
-            var newPosition = squarePositions.red.right + SHIFT
-            if (parseInt(board.width) >= newPosition + 20) {
-                squarePositions.red.right = newPosition;
-                position = squarePositions.red.right;
-            }
-        } else if (movementType == 'up') {
-            var newPosition = squarePositions.red.top - SHIFT;
-            if (newPosition >= 0) {
-                squarePositions.red.top = newPosition;
-                position = squarePositions.red.top;
-            }
-
-        } else if (movementType == 'down') {
-            var newPosition = squarePositions.red.top + SHIFT;
-            if (parseInt(board.height) >= newPosition + 20) {
-                squarePositions.red.top = newPosition;
-                position = squarePositions.red.top;
-            }
+    if (movementType == 'right') {
+        var newPosition = squarePositions[square].right - SHIFT
+        if (newPosition >= 0) {
+            squarePositions[square].right = newPosition;
+            return newPosition;
         }
-    } else {
-        if (movementType == 'right') {
-            var newPosition = squarePositions.green.right - SHIFT
-            if (newPosition >= 0) {
-                squarePositions.green.right = newPosition;
-                position = squarePositions.green.right;
-            }
-        } else if (movementType == 'left') {
-            var newPosition = squarePositions.green.right + SHIFT
-            if (parseInt(board.width) >= newPosition + 20) {
-                squarePositions.green.right = newPosition;
-                position = squarePositions.green.right;
-            }
-        } else if (movementType == 'up') {
-            var newPosition = squarePositions.green.top - SHIFT;
-            if (newPosition >= 0) {
-                squarePositions.green.top = newPosition;
-                position = squarePositions.green.top;
-            }
+    } else if (movementType == 'left') {
+        var newPosition = squarePositions[square].right + SHIFT
+        if (parseInt(board.width) >= newPosition + 20) {
+            squarePositions[square].right = newPosition;
+            return newPosition;
+        }
+    } else if (movementType == 'up') {
+        var newPosition = squarePositions[square].top - SHIFT;
+        if (newPosition >= 0) {
+            squarePositions[square].top = newPosition;
+            return newPosition;
+        }
 
-        } else if (movementType == 'down') {
-            var newPosition = squarePositions.green.top + SHIFT;
-            if (parseInt(board.height) >= newPosition + 20) {
-                squarePositions.green.top = newPosition;
-                position = squarePositions.green.top;
-            }
+    } else if (movementType == 'down') {
+        var newPosition = squarePositions[square].top + SHIFT;
+        if (parseInt(board.height) >= newPosition + 20) {
+            squarePositions[square].top = newPosition;
+            return newPosition;
         }
     }
-
-    return position;
 }
